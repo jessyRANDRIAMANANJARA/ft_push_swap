@@ -1,0 +1,3 @@
+- https://42-cursus.gitbook.io/guide/2-rank-02/push_swap (guide)
+- https://www.youtube.com/watch?v=4dMsuxfqufg (tutorial)
+- https://www.youtube.com/watch?v=wRvipSG4Mmk (tutorial)
