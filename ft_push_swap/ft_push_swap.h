@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:37:45 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/27 09:19:14 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/07 06:47:10 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct s_stack_node
 	struct s_stack_node	*next;
 	struct s_stack_node	*prev;
 }				t_stack_node;	
+
+typedef struct s_stack
+{
+	int value;
+	int index;
+	struct s_stack *next;
+} t_stack;
 
 //*** Handle input ./push_swap "1 -42 1337" ***
 char			**ft_split(char *str, char separator);
@@ -76,4 +83,5 @@ void			rrr(t_stack_node **a, t_stack_node **b, bool checker);
 void			pa(t_stack_node **a, t_stack_node **b, bool checker);
 void			pb(t_stack_node **b, t_stack_node **a, bool checker);
 
+float			 compute_disorder(t_stack_node *a);
 #endif
