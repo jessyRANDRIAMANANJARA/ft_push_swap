@@ -24,5 +24,5 @@ float compute_disorder(t_stack_node *a)
     }
     if (total_pair == 0)
         return (0.0);
-    return (mistake / total_pair);
+    return ((float)mistake / (float)total_pair);
 }

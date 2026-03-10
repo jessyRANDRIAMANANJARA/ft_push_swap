@@ -6,16 +6,12 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:39:10 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/27 09:20:31 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/10 09:17:02 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-/*
- * ATTENTION
- * There may be only 2 nodes
-*/
 static void	swap(t_stack_node **head)
 {
 	int	len;

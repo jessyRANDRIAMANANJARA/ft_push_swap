@@ -6,17 +6,13 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:38:48 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/07 06:52:20 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/10 19:21:15 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "ft_push_swap.h"
 
-/*
- *  atol, i need it to check eventual overflows
- *  converting every string into a long value
-*/
 static long	ft_atol(const char *str)
 {
 	long	num;
@@ -45,16 +41,6 @@ static long	ft_atol(const char *str)
 	return (num * isneg);
 }
 
-/*
- * Create the stack with the command line values
- * Checks are embedded in the creation itslef
- * 		~Duplicate values
- * 		~Over|Underflow
- * 		~Syntax errors
- *
- * 	🏁 Flag is useful cause if true, i have the argv in the HEAP to free
- *
-*/
 void	stack_init(t_stack_node **a, char **argv, bool flag_argc_2)
 {
 	long	nbr;

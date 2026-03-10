@@ -6,12 +6,11 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:05 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/07 06:49:58 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/10 21:30:18 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
@@ -20,12 +19,12 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	
 	if (1 == argc || (2 == argc && !argv[1][0]))
 		return (1);
 	else if (2 == argc)
 		argv = ft_split(argv[1], ' ');
 	stack_init(&a, argv + 1, 2 == argc);
+	ft_printf("%.2f\n", compute_disorder(a));
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)

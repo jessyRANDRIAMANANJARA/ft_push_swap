@@ -6,17 +6,13 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:25 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/27 08:41:28 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/10 09:19:38 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "ft_push_swap.h"
 
-/*
- * Push a node to the top from src to dest
- * attention If stack empty (i.e. NULL)
-*/
 static void	push(t_stack_node **dest, t_stack_node **src)
 {
 	t_stack_node	*node_to_push;

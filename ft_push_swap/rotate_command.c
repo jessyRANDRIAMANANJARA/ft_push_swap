@@ -6,15 +6,12 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:38:31 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/27 08:40:48 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/10 09:02:09 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-/*
- * Top node to bottom position
-*/
 static void	rotate(t_stack_node **stack)
 {
 	t_stack_node	*last_node;

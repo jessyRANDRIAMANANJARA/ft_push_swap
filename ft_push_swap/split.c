@@ -6,16 +6,12 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:38:41 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/27 08:50:02 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/10 19:15:42 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-/*
- * Args at the command line are
- * spaced separated strings
-*/
 static int	count_words(char *str, char separator)
 {
 	int		count;
@@ -40,12 +36,6 @@ static int	count_words(char *str, char separator)
 	return (count);
 }
 
-/*
- * I exploit static variables
- * which are basically 
- * "Global private variables"
- * i can access it only via the get_next_word function
-*/
 static char	*get_next_word(char *str, char separator)
 {
 	static int	cursor = 0;
@@ -68,19 +58,6 @@ static char	*get_next_word(char *str, char separator)
 	return (next_str);
 }
 
-/*
- * I recreate an argv in the HEAP
- *
- * +2 because i want to allocate space
- * for the "\0" Placeholder and the final NULL
- *
- * vector_strings-->[p0]-> "\0" Placeholder to mimic argv
- * 				 |->[p1]->"Hello"
- * 				 |->[p2]->"how"
- * 				 |->[p3]->"Are"
- * 				 |->[..]->"..""
- * 				 |->[NULL]
-*/
 char	**ft_split(char *str, char separator)
 {
 	int		words_number;

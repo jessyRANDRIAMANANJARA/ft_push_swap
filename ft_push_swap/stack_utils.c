@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:38:57 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/27 09:20:21 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/10 09:07:43 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,26 @@
 
 t_stack_node	*find_last_node(t_stack_node *head)
 {
-	if (NULL == head)
+	if (head == NULL)
 		return (NULL);
 	while (head->next)
 		head = head->next;
 	return (head);
 }
 
-/*
- * Search for the last node and append 
- * 🚨 Pay attention if the stack empty?
-*/
 void	append_node(t_stack_node **stack, int nbr)
 {
 	t_stack_node	*node;
 	t_stack_node	*last_node;
 
-	if (NULL == stack)
+	if (stack == NULL)
 		return ;
 	node = malloc(sizeof(t_stack_node));
-	if (NULL == node)
+	if (node == NULL)
 		return ;
 	node->next = NULL;
 	node->value = nbr;
-	if (NULL == *stack)
+	if (*stack == NULL)
 	{
 		*stack = node;
 		node->prev = NULL;
@@ -50,15 +46,12 @@ void	append_node(t_stack_node **stack, int nbr)
 	}
 }
 
-/*
- * Find the smallest value node
-*/
 t_stack_node	*find_smallest(t_stack_node *stack)
 {
 	long			smallest;
 	t_stack_node	*smallest_node;
 
-	if (NULL == stack)
+	if (stack == NULL)
 		return (NULL);
 	smallest = LONG_MAX;
 	while (stack)
@@ -73,13 +66,9 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 	return (smallest_node);
 }
 
-/*
- * Return the cheapest node 
- * that is already flagged
-*/
 t_stack_node	*return_cheapest(t_stack_node *stack)
 {
-	if (NULL == stack)
+	if (stack == NULL)
 		return (NULL);
 	while (stack)
 	{
@@ -94,7 +83,7 @@ int	stack_len(t_stack_node *stack)
 {
 	int	count;
 
-	if (NULL == stack)
+	if (stack == NULL)
 		return (0);
 	count = 0;
 	while (stack)

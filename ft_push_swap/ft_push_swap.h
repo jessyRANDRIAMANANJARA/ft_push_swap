@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:37:45 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/07 06:47:10 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/10 22:08:17 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <stddef.h>
+# include "./ft_printf/ft_printf.h"
 
 typedef struct s_stack_node
 {
@@ -39,7 +40,6 @@ typedef struct s_stack
 	struct s_stack *next;
 } t_stack;
 
-//*** Handle input ./push_swap "1 -42 1337" ***
 char			**ft_split(char *str, char separator);
 
 //*** Handle errors-free ***
@@ -65,10 +65,13 @@ bool			stack_sorted(t_stack_node *stack);
 int				stack_len(t_stack_node *stack);
 void			finish_rotation(t_stack_node **s, t_stack_node *n, char c);
 
-//*** Algorithms ***
+//*** Simple sort ***
 void			tiny_sort(t_stack_node **a);
 void			handle_five(t_stack_node **a, t_stack_node **b);
 void			push_swap(t_stack_node **a, t_stack_node **b);
+
+//*** Medium sort ***
+void			medium_sort(t_stack_node **a, t_stack_node **b);
 
 //*** Commands ***
 void			sa(t_stack_node **a, bool checker);

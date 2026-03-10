@@ -6,17 +6,13 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:42 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/27 08:41:39 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/10 09:32:29 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "ft_push_swap.h"
 
-/*
- * Set the current position of every node 
- * in the current state-configuration
-*/
 void	set_current_position(t_stack_node *stack)
 {
 	int	i;
@@ -38,14 +34,6 @@ void	set_current_position(t_stack_node *stack)
 	}
 }
 
-/*
- *	Best match is..
- *   | "The Smallest-bigger value" |
- *
- *  if no node is Bigger, best_match is the Smallest node.
- *  TLDR 
- *  With this function every node in b gets its target node in a
-*/
 static void	set_target_node(t_stack_node *a,
 							t_stack_node *b)
 {
@@ -75,12 +63,6 @@ static void	set_target_node(t_stack_node *a,
 	}
 }
 
-/*
- * Set the prices to push the node
- * from b -> a
- * The price checks for the relative positions in the stack
- * for every node, setting the respective price
-*/
 void	set_price(t_stack_node *a, t_stack_node *b)
 {
 	int	len_a;
@@ -101,10 +83,6 @@ void	set_price(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-/*
- * Flag the cheapest node in the current
- * stacks configurations
-*/
 void	set_cheapest(t_stack_node *b)
 {
 	long			best_match_value;
@@ -125,13 +103,6 @@ void	set_cheapest(t_stack_node *b)
 	best_match_node->cheapest = true;
 }
 
-/*
- * All the necessary values to make the push
- * 		~Relative Positions
- * 		~Target node, the b node to make emerge
- * 		~Price for every configuration
- * 		~Cheapest in the current configuration
-*/
 void	init_nodes(t_stack_node *a, t_stack_node *b)
 {
 	set_current_position(a);
