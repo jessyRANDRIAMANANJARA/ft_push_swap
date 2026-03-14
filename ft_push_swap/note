@@ -50,3 +50,14 @@ de efa mande zao le disorder amzao
 fanampin'izay an, nasiko anle ft_printf-ko satry tsika tsy afaka mampiasa <stdio.h> hi-affichena anle disorder (efa namboariko io dia misy precision, izany oe no-limiteko 2 chiffres apres virgule)
 
 efa vita, sady mande tsara io nedium-sort io
+
+
+
+13/03/2026
+nampiditra radix_sort (complex_sort) + libft satry mila strcmp hanaovana comparaison anle ao am argv
+static bool	is_simple_flag(char *arg)
+{
+	return (arg && ft_strcmp(arg, "--simple") == 0);
+}
+
+dia nanambotra main() mba ahafahana miantso anle flag (--simple, --medium, --complex)

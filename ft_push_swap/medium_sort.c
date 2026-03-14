@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:00:53 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/10 22:05:19 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/13 19:08:24 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static t_stack_node	*find_min_node(t_stack_node *a)
 	return (min_node);
 }
 
-// Helper function to rotate stack a to bring a specific node to the top
 static void	rotate_to_top(t_stack_node **a, t_stack_node *node)
 {
 	int	len;
@@ -61,7 +60,6 @@ static void	rotate_to_top(t_stack_node **a, t_stack_node *node)
 	}
 }
 
-// Medium sort using selection sort with push_swap operations
 void	medium_sort(t_stack_node **a, t_stack_node **b)
 {
 	int	len;
@@ -69,7 +67,6 @@ void	medium_sort(t_stack_node **a, t_stack_node **b)
 
 	len = stack_len(*a);
 	i = 0;
-	// Push smallest elements to B, keep 3 largest in A
 	while (i < len - 3)
 	{
 		t_stack_node *min_node = find_min_node(*a);
