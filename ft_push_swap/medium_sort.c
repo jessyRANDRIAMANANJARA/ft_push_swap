@@ -6,75 +6,144 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:00:53 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/13 19:08:24 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/16 23:04:42 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-// Helper function to find the node with the smallest value in stack a
-static t_stack_node	*find_min_node(t_stack_node *a)
+static void sort_index_array(int *arr, int len)
 {
-	t_stack_node	*min_node;
-	int				min_value;
+    int i;
+    int j;
+    int min;
+    int tmp;
 
-	if (!a)
-		return (NULL);
-	min_node = a;
-	min_value = a->value;
-	a = a->next;
-	while (a)
-	{
-		if (a->value < min_value)
-		{
-			min_value = a->value;
-			min_node = a;
-		}
-		a = a->next;
-	}
-	return (min_node);
+    for (i = 0; i < len - 1; ++i)
+    {
+        min = i;
+        for (j = i + 1; j < len; ++j)
+            if (arr[j] < arr[min])
+                min = j;
+        if (min != i)
+        {
+            tmp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = tmp;
+        }
+    }
 }
 
-static void	rotate_to_top(t_stack_node **a, t_stack_node *node)
+static void assign_final_index(t_stack_node *a)
 {
-	int	len;
-	int	pos;
+    int len; int *arr; int idx; t_stack_node *cur;
 
-	len = stack_len(*a);
-	pos = 0;
-	t_stack_node *current = *a;
-	while (current != node)
-	{
-		pos++;
-		current = current->next;
-	}
-	if (pos <= len / 2)
-	{
-		while (*a != node)
-			ra(a, false);
-	}
-	else
-	{
-		while (*a != node)
-			rra(a, false);
-	}
+    len = stack_len(a);
+    if (!len)
+        return ;
+    arr = malloc(sizeof(int) * len);
+    if (!arr)
+        return ;
+    idx = 0;
+    for (cur = a; cur; cur = cur->next)
+        arr[idx++] = cur->value;
+    sort_index_array(arr, len);
+    for (cur = a; cur; cur = cur->next)
+    {
+        idx = 0;
+        while (idx < len && cur->value != arr[idx])
+            idx++;
+        cur->final_index = idx;
+    }
+    free(arr);
 }
 
-void	medium_sort(t_stack_node **a, t_stack_node **b)
+static t_stack_node *find_bucket_target(t_stack_node *a,
+    int min_idx,
+    int max_idx,
+    bool *use_rra)
 {
-	int	len;
-	int	i;
+    int len = stack_len(a), pos = 0, first_pos = 0, last_pos = 0;
+    t_stack_node *first = NULL, *last = NULL, *cur = a;
+    while (cur)
+    {
+        if (cur->final_index >= min_idx && cur->final_index <= max_idx)
+        {
+            if (!first){first = cur; first_pos = pos;}
+            last = cur; last_pos = pos;
+        }
+        cur = cur->next; pos++;
+    }
+    if (!first) return (NULL);
+    if (first_pos <= len - last_pos){*use_rra = false; return (first);}
+    *use_rra = true;
+    return (last);
+}
 
-	len = stack_len(*a);
-	i = 0;
-	while (i < len - 3)
-	{
-		t_stack_node *min_node = find_min_node(*a);
-		rotate_to_top(a, min_node);
-		pb(b, a, false);
-		i++;
-	}
-	tiny_sort(a);
-	while (*b)
-		pa(a, b, false);
+static void move_back_from_b(t_stack_node **a, t_stack_node **b)
+{
+    t_stack_node *cheapest;
+
+    while (*b)
+    {
+        init_nodes(*a, *b);
+        cheapest = return_cheapest(*b);
+        if (!cheapest)
+            break ;
+        if (cheapest->above_median
+            && cheapest->target_node->above_median)
+            while (*a != cheapest->target_node && *b != cheapest)
+                rr(a, b, false);
+        else if (!cheapest->above_median
+            && !cheapest->target_node->above_median)
+            while (*a != cheapest->target_node && *b != cheapest)
+                rrr(a, b, false);
+        finish_rotation(b, cheapest, 'b');
+        finish_rotation(a, cheapest->target_node, 'a');
+        pa(a, b, false);
+    }
+}
+
+void medium_sort(t_stack_node **a, t_stack_node **b)
+{
+    int len = stack_len(*a);
+    int bucket_size = (len / 5) + 1;
+    int min_idx = 0;
+    int max_idx = bucket_size - 1;
+    int pushed = 0;
+    bool use_rra;
+    t_stack_node *target;
+
+    assign_final_index(*a);
+    while (stack_len(*a) > 3)
+    {
+        target = find_bucket_target(*a, min_idx, max_idx, &use_rra);
+        if (!target)
+        {
+            min_idx += bucket_size;
+            max_idx += bucket_size;
+            continue ;
+        }
+        while (*a != target)
+            (use_rra ? rra(a, false) : ra(a, false));
+        pb(b, a, false);
+        if ((*b)->final_index < min_idx + (bucket_size / 2))
+            rb(b, false);
+        if (++pushed >= bucket_size)
+        {
+            min_idx += bucket_size;
+            max_idx += bucket_size;
+            pushed = 0;
+        }
+    }
+    tiny_sort(a);
+    move_back_from_b(a, b);
+    set_current_position(*a);
+    target = find_smallest(*a);
+    if (target->above_median)
+        while (*a != target)
+            ra(a, false);
+    else
+        while (*a != target)
+            rra(a, false);
 }

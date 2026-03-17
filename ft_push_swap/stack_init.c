@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:38:48 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/10 19:21:15 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/16 21:27:51 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ void	stack_init(t_stack_node **a, char **argv, bool flag_argc_2)
 	i = 0;
 	while (argv[i])
 	{
+		if (argv[i][0] == '\0')
+		{
+			++i;
+			continue ;
+		}
 		if (error_syntax(argv[i]))
 			error_free(a, argv, flag_argc_2);
 		nbr = ft_atol(argv[i]);

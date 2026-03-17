@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:35:57 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/10 19:16:59 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/16 21:30:05 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ void	free_stack(t_stack_node **stack)
 	t_stack_node	*tmp;
 	t_stack_node	*current;
 
-	if (NULL == stack)
+	if (NULL == stack || NULL == *stack)
 		return ;
 	current = *stack;
+	while (current->prev)
+		current = current->prev;
 	while (current)
 	{
 		tmp = current->next;
