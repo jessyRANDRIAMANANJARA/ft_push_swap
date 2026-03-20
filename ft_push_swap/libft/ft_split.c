@@ -6,12 +6,12 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 13:56:28 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/16 21:27:30 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/18 20:38:24 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
 static int	count_words(char *str, char separator)
 {
 	int		count;
@@ -85,9 +85,23 @@ char	**ft_split(char *str, char separator)
 	}
 	vector_strings[i] = NULL;
 	return (vector_strings);
-}
+} */
 
-/*
+// #include <stdio.h>
+// int main(void)
+// {
+// 	char *tab = "hello bonjour lolo";
+// 	char **tab1 = (ft_split(tab, ' '));
+// 	int i = 0;
+// 	while (i < 4)
+// 	{
+// 		printf("%s\n", tab1[i]);
+// 		i++;
+// 	}
+	
+// }
+
+
 static int	ft_count_words(char const *s, char c)
 {
 	int	i;
@@ -156,26 +170,26 @@ static int	ft_get_word(char const *s, char c, int i, int *len)
 	return (start);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *str, char c)
 {
 	char	**big;
 	int		k;
 	int		i;
 	int		y;
 
-	if (!s)
+	if (!str)
 		return (NULL);
-	big = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	big = malloc(sizeof(char *) * (ft_count_words(str, c) + 1));
 	if (!big)
 		return (NULL);
 	y = -1;
 	i = 0;
-	while (s[i])
+	while (str[i])
 	{
-		i = ft_get_word(s, c, i, &k);
+		i = ft_get_word(str, c, i, &k);
 		if (k > 0 && ++y >= 0)
 		{
-			big[y] = copy(s, i, k);
+			big[y] = copy(str, i, k);
 			if (!big[y])
 				return ((char **)ft_free(big, y));
 		}
@@ -183,4 +197,18 @@ char	**ft_split(char const *s, char c)
 	}
 	big[++y] = NULL;
 	return (big);
-} */
+} 
+/*
+#include <stdio.h>
+int main(void)
+{
+	char *tab = "hello bonjour lolo";
+	char **tab1 = (ft_split(tab, ' '));
+	int i = 0;
+	while (i < 3)
+	{
+		printf("%s\n", tab1[i]);
+		i++;
+	}
+	
+}*/

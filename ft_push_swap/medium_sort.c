@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:00:53 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/16 23:04:42 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/20 11:08:24 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ static void move_back_from_b(t_stack_node **a, t_stack_node **b)
         if (cheapest->above_median
             && cheapest->target_node->above_median)
             while (*a != cheapest->target_node && *b != cheapest)
-                rr(a, b, false);
+                rr(a, b);
         else if (!cheapest->above_median
             && !cheapest->target_node->above_median)
             while (*a != cheapest->target_node && *b != cheapest)
-                rrr(a, b, false);
+                rrr(a, b);
         finish_rotation(b, cheapest, 'b');
         finish_rotation(a, cheapest->target_node, 'a');
-        pa(a, b, false);
+        pa(a, b);
     }
 }
 
@@ -125,10 +125,10 @@ void medium_sort(t_stack_node **a, t_stack_node **b)
             continue ;
         }
         while (*a != target)
-            (use_rra ? rra(a, false) : ra(a, false));
-        pb(b, a, false);
+            (use_rra ? rra(a) : ra(a));
+        pb(b, a);
         if ((*b)->final_index < min_idx + (bucket_size / 2))
-            rb(b, false);
+            rb(b);
         if (++pushed >= bucket_size)
         {
             min_idx += bucket_size;
@@ -142,8 +142,8 @@ void medium_sort(t_stack_node **a, t_stack_node **b)
     target = find_smallest(*a);
     if (target->above_median)
         while (*a != target)
-            ra(a, false);
+            ra(a);
     else
         while (*a != target)
-            rra(a, false);
+            rra(a);
 }

@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:39:31 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/10 19:19:59 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/20 11:11:29 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void	tiny_sort(t_stack_node **a)
 
 	highest_node = find_highest(*a);
 	if (*a == highest_node)
-		ra(a, false);
+		ra(a);
 	else if ((*a)->next == highest_node)
-		rra(a, false);
+		rra(a);
 	if ((*a)->value > (*a)->next->value)
-		sa(a, false);
+		sa(a);
 }
 
 void	handle_five(t_stack_node **a, t_stack_node **b)
@@ -64,6 +64,6 @@ void	handle_five(t_stack_node **a, t_stack_node **b)
 	{
 		init_nodes(*a, *b);
 		finish_rotation(a, find_smallest(*a), 'a');
-		pb(b, a, false);
+		pb(b, a);
 	}
 }

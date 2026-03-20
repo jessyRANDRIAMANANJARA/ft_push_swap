@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:37:45 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/14 07:36:09 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/20 11:07:04 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ typedef struct s_stack_node
 	struct s_stack_node	*next;
 	struct s_stack_node	*prev;
 }				t_stack_node;	
+
+typedef struct s_args
+{
+	char	*flag;
+	char	**values;
+	bool	free_values;
+}t_args;
 
 //*** Handle errors-free ***
 void			free_matrix(char **argv);
@@ -69,17 +76,18 @@ void			medium_sort(t_stack_node **a, t_stack_node **b);
 void			radix_sort(t_stack_node **a, t_stack_node **b);
 
 //*** Commands ***
-void			sa(t_stack_node **a, bool checker);
-void			sb(t_stack_node **b, bool checker);
-void			ss(t_stack_node **a, t_stack_node **b, bool checker);
-void			ra(t_stack_node **a, bool checker);
-void			rb(t_stack_node **b, bool checker);
-void			rr(t_stack_node **a, t_stack_node **b, bool checker);
-void			rra(t_stack_node **a, bool checker);
-void			rrb(t_stack_node **b, bool checker);
-void			rrr(t_stack_node **a, t_stack_node **b, bool checker);
-void			pa(t_stack_node **a, t_stack_node **b, bool checker);
-void			pb(t_stack_node **b, t_stack_node **a, bool checker);
+void			sa(t_stack_node **a);
+void			sb(t_stack_node **b);
+void			ss(t_stack_node **a, t_stack_node **b);
+void			ra(t_stack_node **a);
+void			rb(t_stack_node **b);
+void			rr(t_stack_node **a, t_stack_node **b);
+void			rra(t_stack_node **a);
+void			rrb(t_stack_node **b);
+void			rrr(t_stack_node **a, t_stack_node **b);
+void			pa(t_stack_node **a, t_stack_node **b);
+void			pb(t_stack_node **b, t_stack_node **a);
 
-float			 compute_disorder(t_stack_node *a);
+float			compute_disorder(t_stack_node *a);
+void			bench_mode(t_stack_node *a, char *flag);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:25 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/10 09:19:38 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/20 11:08:48 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,14 @@ static void	push(t_stack_node **dest, t_stack_node **src)
 	}
 }
 
-void	pa(t_stack_node **a, t_stack_node **b, bool checker)
+void	pa(t_stack_node **a, t_stack_node **b)
 {
 	push(a, b);
-	if (!checker)
-		write(1, "pa\n", 3);
+	write(1, "pa\n", 3);
 }
 
-void	pb(t_stack_node **b, t_stack_node **a, bool checker)
+void	pb(t_stack_node **b, t_stack_node **a)
 {
 	push(b, a);
-	if (!checker)
-		write(1, "pb\n", 3);
+	write(1, "pb\n", 3);
 }

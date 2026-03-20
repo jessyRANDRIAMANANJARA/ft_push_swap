@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 19:57:59 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/13 19:58:11 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/20 11:07:38 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,72 @@ static int get_max_bits(t_stack_node *stack)
     return (max_bits);
 }
 
-void radix_sort(t_stack_node **stack_a, t_stack_node **stack_b)
+static int	find_bit_zero_pos(t_stack_node *a, int bit)
 {
-    int i;
-    int j;
-    int size;
-    int max_bits;
+	int		pos;
 
-    if (*stack_a == NULL)
-        return;
-    assign_final_index(*stack_a);
-    size = stack_len(*stack_a);
-    max_bits = get_max_bits(*stack_a);
-    i = 0;
-    while (i < max_bits)
-    {
-        j = 0;
-        while (j++ < size)
-        {
-            if (((*stack_a)->final_index >> i) & 1)
-                ra(stack_a, false);
-            else
-                pb(stack_b, stack_a, false);
-        }
-        while (*stack_b)
-            pa(stack_a, stack_b, false);
-        i++;
-    }
+	pos = 0;
+	while (a)
+	{
+		if (((a->final_index >> bit) & 1) == 0)
+			return (pos);
+		a = a->next;
+		pos++;
+	}
+	return (-1);
+}
+
+static int	count_bit_zero(t_stack_node *a, int bit)
+{
+	int	count;
+
+	count = 0;
+	while (a)
+	{
+		if (((a->final_index >> bit) & 1) == 0)
+			count++;
+		a = a->next;
+	}
+	return (count);
+}
+
+void	radix_sort(t_stack_node **stack_a, t_stack_node **stack_b)
+{
+	int		i;
+	int		size;
+	int		max_bits;
+	int		zeros;
+	int		pos;
+	int		len;
+
+	if (*stack_a == NULL)
+		return ;
+	assign_final_index(*stack_a);
+	size = stack_len(*stack_a);
+	max_bits = get_max_bits(*stack_a);
+	i = 0;
+	while (i < max_bits)
+	{
+		zeros = count_bit_zero(*stack_a, i);
+		if (!zeros)
+		{
+			i++;
+			continue ;
+		}
+		while (zeros-- > 0)
+		{
+			pos = find_bit_zero_pos(*stack_a, i);
+			len = stack_len(*stack_a);
+			if (pos <= len / 2)
+				while (pos-- > 0)
+					ra(stack_a);
+			else
+				while (len - pos-- > 0)
+					rra(stack_a);
+			pb(stack_b, stack_a);
+		}
+		while (*stack_b)
+			pa(stack_a, stack_b);
+		i++;
+	}
 }

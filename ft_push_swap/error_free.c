@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:35:57 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/16 21:30:05 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/18 21:46:17 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	free_matrix(char **argv)
 {
 	int	i;
 
-	i = -1;
-	if (NULL == argv || NULL == *argv)
+	i = 0;
+	if (NULL == argv)
 		return ;
 	while (argv[i])
 		free(argv[i++]);
-	free(argv - 1);
+	free(argv);
 }
 
 void	free_stack(t_stack_node **stack)
