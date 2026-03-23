@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:00:53 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/20 11:08:24 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/22 07:28:36 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static t_stack_node *find_bucket_target(t_stack_node *a,
     return (last);
 }
 
-static void move_back_from_b(t_stack_node **a, t_stack_node **b)
+static void move_back_from_b(t_stack_node **a, t_stack_node **b, t_count *count)
 {
     t_stack_node *cheapest;
 
@@ -93,18 +93,18 @@ static void move_back_from_b(t_stack_node **a, t_stack_node **b)
         if (cheapest->above_median
             && cheapest->target_node->above_median)
             while (*a != cheapest->target_node && *b != cheapest)
-                rr(a, b);
+                rr(a, b, count);
         else if (!cheapest->above_median
             && !cheapest->target_node->above_median)
             while (*a != cheapest->target_node && *b != cheapest)
-                rrr(a, b);
-        finish_rotation(b, cheapest, 'b');
-        finish_rotation(a, cheapest->target_node, 'a');
-        pa(a, b);
+                rrr(a, b, count);
+        finish_rotation(b, cheapest, 'b', count);
+        finish_rotation(a, cheapest->target_node, 'a', count);
+        pa(a, b, count);
     }
 }
 
-void medium_sort(t_stack_node **a, t_stack_node **b)
+void medium_sort(t_stack_node **a, t_stack_node **b, t_count *count)
 {
     int len = stack_len(*a);
     int bucket_size = (len / 5) + 1;
@@ -125,10 +125,10 @@ void medium_sort(t_stack_node **a, t_stack_node **b)
             continue ;
         }
         while (*a != target)
-            (use_rra ? rra(a) : ra(a));
-        pb(b, a);
+            (use_rra ? rra(a, count) : ra(a, count));
+        pb(b, a, count);
         if ((*b)->final_index < min_idx + (bucket_size / 2))
-            rb(b);
+            rb(b, count);
         if (++pushed >= bucket_size)
         {
             min_idx += bucket_size;
@@ -136,14 +136,14 @@ void medium_sort(t_stack_node **a, t_stack_node **b)
             pushed = 0;
         }
     }
-    tiny_sort(a);
-    move_back_from_b(a, b);
+    tiny_sort(a, count);
+    move_back_from_b(a, b, count);
     set_current_position(*a);
     target = find_smallest(*a);
     if (target->above_median)
         while (*a != target)
-            ra(a);
+            ra(a, count);
     else
         while (*a != target)
-            rra(a);
+            rra(a, count);
 }

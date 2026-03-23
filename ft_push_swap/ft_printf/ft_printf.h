@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 18:34:37 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/10 20:44:18 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/21 10:15:48 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <stdint.h>
 
 int				ft_putchar(char c);
 int				ft_putstr(char *str);

@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:39:31 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/20 11:11:29 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/22 07:24:43 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,25 @@ static t_stack_node	*find_highest(t_stack_node *stack)
 	return (highest_node);
 }
 
-void	tiny_sort(t_stack_node **a)
+void	tiny_sort(t_stack_node **a, t_count *count)
 {
 	t_stack_node	*highest_node;
 
 	highest_node = find_highest(*a);
 	if (*a == highest_node)
-		ra(a);
+		ra(a, count);
 	else if ((*a)->next == highest_node)
-		rra(a);
+		rra(a, count);
 	if ((*a)->value > (*a)->next->value)
-		sa(a);
+		sa(a, count);
 }
 
-void	handle_five(t_stack_node **a, t_stack_node **b)
+void	handle_five(t_stack_node **a, t_stack_node **b, t_count *count)
 {
 	while (stack_len(*a) > 3)
 	{
 		init_nodes(*a, *b);
-		finish_rotation(a, find_smallest(*a), 'a');
-		pb(b, a);
+		finish_rotation(a, find_smallest(*a), 'a', count);
+		pb(b, a, count);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 08:27:28 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/12 11:19:13 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/21 10:04:37 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_hexa_pointer(void *nbr)
 {
 	const char		*hex_chars;
 	char			hex[16];
-	unsigned long	addr;
+	uintptr_t	addr;
 	int				i;
 	int				count;
 
@@ -28,7 +28,7 @@ int	ft_hexa_pointer(void *nbr)
 	i = 15;
 	count = 0;
 	hex_chars = "0123456789abcdef";
-	addr = (unsigned long)nbr;
+	addr = (uintptr_t)nbr;
 	while (addr != 0)
 	{
 		hex[i] = hex_chars[addr % 16];

@@ -15,7 +15,7 @@ HEADER = ft_printf.h
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) -c $(SRCS) -I $(HEADER)
+	$(CC) $(CFLAGS) -c $(SRCS) -I .
 	ar rc $(NAME) $(OBJ)
 
 clean:

@@ -6,15 +6,12 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:38:08 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/20 11:09:44 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/22 09:03:14 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-/*
- * Bottom to top
-*/
 static void	reverse_rotate(t_stack_node **stack)
 {
 	t_stack_node	*last;
@@ -31,21 +28,24 @@ static void	reverse_rotate(t_stack_node **stack)
 	last->next->prev = last;
 }
 
-void	rra(t_stack_node **a)
+void	rra(t_stack_node **a, t_count *count)
 {
 	reverse_rotate(a);
 	write(1, "rra\n", 4);
+	count->rra++;
 }
 
-void	rrb(t_stack_node **b)
+void	rrb(t_stack_node **b, t_count *count)
 {
 	reverse_rotate(b);
 	write(1, "rrb\n", 4);
+	count->rrb++;
 }
 
-void	rrr(t_stack_node **a, t_stack_node **b)
+void	rrr(t_stack_node **a, t_stack_node **b, t_count *count)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
 	write(1, "rrr\n", 4);
+	count->rrr++;
 }

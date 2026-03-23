@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:37:45 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/20 11:07:04 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/22 09:17:49 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@ typedef struct s_stack_node
 	struct s_stack_node	*next;
 	struct s_stack_node	*prev;
 }				t_stack_node;	
+
+typedef struct s_count
+{
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}	t_count;
 
 typedef struct s_args
 {
@@ -62,32 +77,33 @@ t_stack_node	*find_smallest(t_stack_node *stack);
 t_stack_node	*return_cheapest(t_stack_node *stack);
 bool			stack_sorted(t_stack_node *stack);
 int				stack_len(t_stack_node *stack);
-void			finish_rotation(t_stack_node **s, t_stack_node *n, char c);
+void			finish_rotation(t_stack_node **s, t_stack_node *n, char c, t_count *count);
 
 //*** Simple sort ***
-void			tiny_sort(t_stack_node **a);
-void			handle_five(t_stack_node **a, t_stack_node **b);
-void			push_swap(t_stack_node **a, t_stack_node **b);
+void		tiny_sort(t_stack_node **a, t_count *count);
+void		handle_five(t_stack_node **a, t_stack_node **b, t_count *count);
+void		push_swap(t_stack_node **a, t_stack_node **b, t_count *count);
 
 //*** Medium sort ***
-void			medium_sort(t_stack_node **a, t_stack_node **b);
+void		medium_sort(t_stack_node **a, t_stack_node **b, t_count *count);
 
 //*** Complex sort ***
-void			radix_sort(t_stack_node **a, t_stack_node **b);
+void		radix_sort(t_stack_node **a, t_stack_node **b, t_count *count);
 
 //*** Commands ***
-void			sa(t_stack_node **a);
-void			sb(t_stack_node **b);
-void			ss(t_stack_node **a, t_stack_node **b);
-void			ra(t_stack_node **a);
-void			rb(t_stack_node **b);
-void			rr(t_stack_node **a, t_stack_node **b);
-void			rra(t_stack_node **a);
-void			rrb(t_stack_node **b);
-void			rrr(t_stack_node **a, t_stack_node **b);
-void			pa(t_stack_node **a, t_stack_node **b);
-void			pb(t_stack_node **b, t_stack_node **a);
+void			sa(t_stack_node **a, t_count *count);
+void			sb(t_stack_node **b, t_count *count);
+void			ss(t_stack_node **a, t_stack_node **b, t_count *count);
+void			ra(t_stack_node **a, t_count *count);
+void			rb(t_stack_node **b, t_count *count);
+void			rr(t_stack_node **a, t_stack_node **b, t_count *count);
+void			rra(t_stack_node **a, t_count *count);
+void			rrb(t_stack_node **b, t_count *count);
+void			rrr(t_stack_node **a, t_stack_node **b, t_count *count);
+void			pa(t_stack_node **a, t_stack_node **b, t_count *count);
+void			pb(t_stack_node **b, t_stack_node **a, t_count *count);
 
 float			compute_disorder(t_stack_node *a);
-void			bench_mode(t_stack_node *a, char *flag);
+void			bench_mode(t_stack_node *a, char *flag, t_count *count);
+void	print_count(t_count *count);
 #endif

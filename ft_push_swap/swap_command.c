@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:39:10 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/20 11:11:03 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/22 07:07:52 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,24 @@ static void	swap(t_stack_node **head)
 	(*head)->prev = NULL;
 }
 
-void	sa(t_stack_node	**a)
+void	sa(t_stack_node	**a, t_count *count)
 {
 	swap(a);
 	write(1, "sa\n", 3);
+	count->sa++;
 }
 
-void	sb(t_stack_node **b)
+void	sb(t_stack_node **b, t_count *count)
 {
 	swap(b);
 	write(1, "sb\n", 3);
+	count->sb++;
 }
 
-void	ss(t_stack_node **a, t_stack_node **b)
+void	ss(t_stack_node **a, t_stack_node **b, t_count *count)
 {
 	swap(a);
 	swap(b);
 	write(1, "ss\n", 3);
+	count->ss++;
 }

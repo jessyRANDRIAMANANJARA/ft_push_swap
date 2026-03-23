@@ -6,36 +6,36 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:05 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/20 10:55:15 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/22 14:56:43 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
 static void	adaptive_flag(int disorder_percent, t_stack_node *a,
-				t_stack_node *b)
+				t_stack_node *b, t_count *count)
 {
 	if (disorder_percent < 20)
-		push_swap(&a, &b);
+		push_swap(&a, &b, count);
 	else if (disorder_percent >= 20 && disorder_percent < 50)
-		medium_sort(&a, &b);
+		medium_sort(&a, &b, count);
 	else
-		radix_sort(&a, &b);
+		radix_sort(&a, &b, count);
 }
 
 static void	is_flag(char *arg, t_stack_node *a, t_stack_node *b,
-				int disorder_percent)
+				int disorder_percent, t_count *count)
 {
 	if (!arg)
 		return ;
 	if (ft_strcmp(arg, "--simple") == 0)
-		push_swap(&a, &b);
+		push_swap(&a, &b, count);
 	else if (ft_strcmp(arg, "--medium") == 0)
-		medium_sort(&a, &b);
+		medium_sort(&a, &b, count);
 	else if (ft_strcmp(arg, "--complex") == 0)
-		radix_sort(&a, &b);
+		radix_sort(&a, &b, count);
 	else if (ft_strcmp(arg, "--adaptive") == 0)
-		adaptive_flag(disorder_percent, a, b);
+		adaptive_flag(disorder_percent, a, b, count);
 	else
 		write(1, "Error\n", 6);
 }
@@ -68,10 +68,11 @@ static void	check_flags(int argc, char **argv, t_args *args)
 	args->values = argv + 2;
 }
 
-static void	run_sort(t_stack_node *a, t_stack_node *b, char *flag)
+static void	run_sort(t_stack_node *a, t_stack_node *b, char *flag, t_count *count)
 {
 	double	disorder;
 	int		disorder_percent;
+	// t_count *count;
 
 	disorder = compute_disorder(a);
 	disorder_percent = disorder * 100;
@@ -79,13 +80,13 @@ static void	run_sort(t_stack_node *a, t_stack_node *b, char *flag)
 	if (stack_sorted(a))
 		return ;
 	if (stack_len(a) == 2)
-		sa(&a);
+		sa(&a, count);
 	else if (stack_len(a) == 3)
-		tiny_sort(&a);
+		tiny_sort(&a, count);
 	else if (flag)
-		is_flag(flag, a, b, disorder_percent);
+		is_flag(flag, a, b, disorder_percent, count);
 	else
-		adaptive_flag(disorder_percent, a, b);
+		adaptive_flag(disorder_percent, a, b, count);
 }
 
 int	main(int argc, char **argv)
@@ -93,16 +94,20 @@ int	main(int argc, char **argv)
 	t_stack_node	*a;
 	t_stack_node	*b;
 	t_args			args;
+	t_count		count;
 
 	if (argc < 2)
 		return (1);
 	check_flags(argc, argv, &args);
 	a = NULL;
 	b = NULL;
+	count = (t_count){0};
 	stack_init(&a, args.values, args.free_values);
+	run_sort(a, b, args.flag, &count);
+
 	if (ft_strcmp(argv[1], "--bench") == 0)
-		bench_mode(a, argv[2]);
-	run_sort(a, b, args.flag);
+		bench_mode(a, argv[2], &count);
+
 	free_stack(&a);
 	return (0);
 }

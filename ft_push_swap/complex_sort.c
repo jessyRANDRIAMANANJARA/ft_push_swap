@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 19:57:59 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/20 11:07:38 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/22 07:25:37 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,9 @@ static int	count_bit_zero(t_stack_node *a, int bit)
 	return (count);
 }
 
-void	radix_sort(t_stack_node **stack_a, t_stack_node **stack_b)
+void	radix_sort(t_stack_node **stack_a, t_stack_node **stack_b, t_count *count)
 {
 	int		i;
-	int		size;
 	int		max_bits;
 	int		zeros;
 	int		pos;
@@ -93,7 +92,6 @@ void	radix_sort(t_stack_node **stack_a, t_stack_node **stack_b)
 	if (*stack_a == NULL)
 		return ;
 	assign_final_index(*stack_a);
-	size = stack_len(*stack_a);
 	max_bits = get_max_bits(*stack_a);
 	i = 0;
 	while (i < max_bits)
@@ -110,14 +108,14 @@ void	radix_sort(t_stack_node **stack_a, t_stack_node **stack_b)
 			len = stack_len(*stack_a);
 			if (pos <= len / 2)
 				while (pos-- > 0)
-					ra(stack_a);
+					ra(stack_a, count);
 			else
 				while (len - pos-- > 0)
-					rra(stack_a);
-			pb(stack_b, stack_a);
+					rra(stack_a, count);
+			pb(stack_b, stack_a, count);
 		}
 		while (*stack_b)
-			pa(stack_a, stack_b);
+			pa(stack_a, stack_b, count);
 		i++;
 	}
 }

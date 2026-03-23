@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:42 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/10 09:32:29 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/22 08:52:06 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,20 +87,24 @@ void	set_cheapest(t_stack_node *b)
 {
 	long			best_match_value;
 	t_stack_node	*best_match_node;
+	t_stack_node	*iter;
 
 	if (NULL == b)
 		return ;
 	best_match_value = LONG_MAX;
-	while (b)
+	iter = b;
+	while (iter)
 	{
-		if (b->push_price < best_match_value)
+		iter->cheapest = false;
+		if (iter->push_price < best_match_value)
 		{
-			best_match_value = b->push_price;
-			best_match_node = b;
+			best_match_value = iter->push_price;
+			best_match_node = iter;
 		}
-		b = b->next;
+		iter = iter->next;
 	}
-	best_match_node->cheapest = true;
+	if (best_match_node)
+		best_match_node->cheapest = true;
 }
 
 void	init_nodes(t_stack_node *a, t_stack_node *b)
