@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:05 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/22 14:56:43 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/23 22:45:39 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,15 @@ static void	check_flags(int argc, char **argv, t_args *args)
 	args->values = argv + 2;
 }
 
-static void	run_sort(t_stack_node *a, t_stack_node *b, char *flag, t_count *count)
+static double	run_sort(t_stack_node *a, t_stack_node *b, char *flag, t_count *count)
 {
 	double	disorder;
 	int		disorder_percent;
-	// t_count *count;
 
 	disorder = compute_disorder(a);
 	disorder_percent = disorder * 100;
-	ft_printf("%d%%\n", disorder_percent);
 	if (stack_sorted(a))
-		return ;
+		return (0);
 	if (stack_len(a) == 2)
 		sa(&a, count);
 	else if (stack_len(a) == 3)
@@ -87,6 +85,7 @@ static void	run_sort(t_stack_node *a, t_stack_node *b, char *flag, t_count *coun
 		is_flag(flag, a, b, disorder_percent, count);
 	else
 		adaptive_flag(disorder_percent, a, b, count);
+	return  (disorder);
 }
 
 int	main(int argc, char **argv)
@@ -103,10 +102,10 @@ int	main(int argc, char **argv)
 	b = NULL;
 	count = (t_count){0};
 	stack_init(&a, args.values, args.free_values);
-	run_sort(a, b, args.flag, &count);
+	double disorder = run_sort(a, b, args.flag, &count);
 
 	if (ft_strcmp(argv[1], "--bench") == 0)
-		bench_mode(a, argv[2], &count);
+		bench_mode(disorder, argv[2], &count);
 
 	free_stack(&a);
 	return (0);
