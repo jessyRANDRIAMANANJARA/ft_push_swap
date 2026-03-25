@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:37:45 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/23 22:44:39 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/23 23:02:51 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,16 @@ typedef struct s_args
 	char	*flag;
 	char	**values;
 	bool	free_values;
+	bool	bench;
 }t_args;
+
+typedef struct s_sort_data
+{
+	t_stack_node	**a;
+	t_stack_node	**b;
+	char			*flag;
+	t_count			*count;
+}	t_sort_data;
 
 //*** Handle errors-free ***
 void			free_matrix(char **argv);
@@ -105,5 +114,5 @@ void			pb(t_stack_node **b, t_stack_node **a, t_count *count);
 
 float			compute_disorder(t_stack_node *a);
 void			bench_mode(double disorder_percent, char *flag, t_count *count);
-void	print_count(t_count *count);
+void			print_count(t_count *count);
 #endif

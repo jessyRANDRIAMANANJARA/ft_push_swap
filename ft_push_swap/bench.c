@@ -12,25 +12,37 @@
 
 #include "ft_push_swap.h"
 
-void bench_mode(double disorder_percent, char *flag, t_count *count)
+static char	*clean_flag_name(char *flag)
 {
-    disorder_percent = disorder_percent * 100;
-    ft_printf("[bench] disorder: %.2f%%\n", disorder_percent);
-    ft_printf("[bench] strategy: %s", flag);
-    if (ft_strcmp(flag, "--simple") == 0)
-        ft_printf(" / O(n^2)\n");
-    else if (ft_strcmp(flag, "--medium") == 0)
-        ft_printf(" / O(nVn)\n");
-    else if (ft_strcmp(flag, "--complex") == 0)
-        ft_printf(" / O(nlogn)\n");
-    else if (ft_strcmp(flag, "--adaptive") == 0)
-    {
-        if (disorder_percent < 20.0)
-            ft_printf(" / O(n^2)\n");
-        else if (disorder_percent < 50.0)
-            ft_printf(" / O(nVn)\n");
-        else
-            ft_printf(" / O(nlogn)\n");
-    }
-    print_count(count);
+	if (!flag)
+		return ("adaptive");
+	if (ft_strncmp(flag, "--", 2) == 0)
+		return (flag + 2);
+	return (flag);
+}
+
+void	bench_mode(double disorder_percent, char *flag, t_count *count)
+{
+	char	*name;
+
+	disorder_percent = disorder_percent * 100;
+	name = clean_flag_name(flag);
+	ft_printf("[bench] disorder: %.2f%%\n", disorder_percent);
+	ft_printf("[bench] strategy: %s", name);
+	if (ft_strcmp(name, "simple") == 0)
+		ft_printf(" / O(n^2)\n");
+	else if (ft_strcmp(name, "medium") == 0)
+		ft_printf(" / O(nVn)\n");
+	else if (ft_strcmp(name, "complex") == 0)
+		ft_printf(" / O(nlogn)\n");
+	else if (ft_strcmp(name, "adaptive") == 0)
+	{
+		if (disorder_percent < 20.0)
+			ft_printf(" / O(n^2)\n");
+		else if (disorder_percent < 50.0)
+			ft_printf(" / O(nVn)\n");
+		else
+			ft_printf(" / O(nlogn)\n");
+	}
+	print_count(count);
 }

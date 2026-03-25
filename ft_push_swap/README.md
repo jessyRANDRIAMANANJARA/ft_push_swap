@@ -7,3 +7,21 @@ https://medium.com/@julien-ctx/push-swap-an-easy-and-efficient-algorithm-to-sort
 https://medium.com/@dansylvain84/my-implementation-of-the-42-push-swap-project-2706fd8c2e9f
 
 http://medium.com/@beatrizbazaglia/push-swap-3390f2b33428
+
+void	example(void)
+{
+	t_stack_node	node;       // Sur la stack
+	t_stack_node	*ptr;       // Pointeur
+	t_stack_node	**dptr;     // Double pointeur
+
+	// Structure directe
+	node.value = 1;
+
+	// Pointeur
+	ptr = &node;
+	ptr->value = 2;
+
+	// Double pointeur
+	dptr = &ptr;
+	(*dptr)->value = 3;
+}
