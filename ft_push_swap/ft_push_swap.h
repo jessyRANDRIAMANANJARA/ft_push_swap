@@ -25,6 +25,8 @@ typedef struct s_stack_node
 {
 	int					value;
 	int					current_position;
+	int					current_pos;
+	int					push_cost;
 	int					final_index;
 	int					push_price;
 	bool				above_median;
@@ -115,4 +117,5 @@ void			pb(t_stack_node **b, t_stack_node **a, t_count *count);
 float			compute_disorder(t_stack_node *a);
 void			bench_mode(double disorder_percent, char *flag, t_count *count);
 void			print_count(t_count *count);
+
 #endif

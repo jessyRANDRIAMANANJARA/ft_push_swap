@@ -39,7 +39,7 @@ static void	apply_sort_flag(char *arg, t_stack_node **a, t_stack_node **b,
 		radix_sort(a, b, count);
 	else if (ft_strcmp(arg, "--bench") != 0)
 	{
-		write(2, "Error\n", 6);
+		ft_printf("Error\n");
 		exit(1);
 	}
 	else
@@ -149,6 +149,10 @@ int	main(int argc, char **argv)
 	stack_init(&a, args.values, args.free_values);
 	data = (t_sort_data){&a, &b, args.flag, &count};
 	disorder = run_sort(&data);
+	if (stack_sorted(a) == true)
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
 	if (args.bench)
 		bench_mode(disorder, args.flag, &count);
 	cleanup(&a, args.values, args.free_values);
