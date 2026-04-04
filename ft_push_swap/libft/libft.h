@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 12:28:35 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/13 20:55:07 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/26 21:30:51 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 
-int	ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_isalnum(int c);
@@ -46,7 +46,6 @@ char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
-// char	**ft_split(char const *s, char c);
 char	**ft_split(char *str, char separator);
 char	*ft_itoa(int n);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));

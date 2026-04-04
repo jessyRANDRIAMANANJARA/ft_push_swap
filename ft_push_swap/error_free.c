@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   error_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:35:57 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/18 21:46:17 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:02:53 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_push_swap.h"
 

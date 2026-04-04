@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hexa_pointer.c                                  :+:      :+:    :+:   */
+/*   ft_count_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 08:27:28 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/30 22:02:41 by tusandri         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:02:23 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_hexa_pointer(void *nbr)
+int	ft_count_len(long n)
 {
-	const char		*hex_chars;
-	char			hex[16];
-	uintptr_t		addr;
-	int				i;
-	int				count;
+	int		len;
+	long	nb;
 
-	if (nbr == NULL)
+	nb = n;
+	len = 0;
+	if (nb == 0)
+		len = 1;
+	if (nb < 0)
+		nb = nb * -1;
+	while (nb > 0)
 	{
-		write(1, "(nil)", 5);
-		return (5);
+		nb = nb / 10;
+		len++;
 	}
-	i = 15;
-	count = 0;
-	hex_chars = "0123456789abcdef";
-	addr = (uintptr_t)nbr;
-	while (addr != 0)
-	{
-		hex[i] = hex_chars[addr % 16];
-		addr = addr / 16;
-		i--;
-	}
-	count += write(1, "0x", 2);
-	count += write(1, &hex[i + 1], 16 - i - 1);
-	return (count);
+	if (n < 0)
+		return (len + 1);
+	return (len);
 }

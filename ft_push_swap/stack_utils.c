@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:38:57 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/20 09:50:48 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:02:16 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

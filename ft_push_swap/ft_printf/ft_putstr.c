@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 18:39:07 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/09 11:56:33 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:02:45 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

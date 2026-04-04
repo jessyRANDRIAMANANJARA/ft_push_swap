@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 19:57:59 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/23 22:50:41 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:02:50 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

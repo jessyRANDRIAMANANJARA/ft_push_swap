@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:37:45 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/23 23:02:51 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/01 17:06:34 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@
 # include <stddef.h>
 # include "./libft/libft.h"
 # include "./ft_printf/ft_printf.h"
+# include "./ft_fprintf/ft_fprintf.h"
 
 typedef struct s_stack_node
 {
 	int					value;
 	int					current_position;
-	int					current_pos;
-	int					push_cost;
 	int					final_index;
 	int					push_price;
 	bool				above_median;
@@ -57,7 +56,7 @@ typedef struct s_args
 	char	**values;
 	bool	free_values;
 	bool	bench;
-}t_args;
+}	t_args;
 
 typedef struct s_sort_data
 {
@@ -88,18 +87,19 @@ t_stack_node	*find_smallest(t_stack_node *stack);
 t_stack_node	*return_cheapest(t_stack_node *stack);
 bool			stack_sorted(t_stack_node *stack);
 int				stack_len(t_stack_node *stack);
-void			finish_rotation(t_stack_node **s, t_stack_node *n, char c, t_count *count);
+void			finish_rotation(t_stack_node **s, t_stack_node *n, char c,
+					t_count *count);
 
 //*** Simple sort ***
-void		tiny_sort(t_stack_node **a, t_count *count);
-void		handle_five(t_stack_node **a, t_stack_node **b, t_count *count);
-void		push_swap(t_stack_node **a, t_stack_node **b, t_count *count);
+void			tiny_sort(t_stack_node **a, t_count *count);
+void			handle_five(t_stack_node **a, t_stack_node **b, t_count *count);
+void			push_swap(t_stack_node **a, t_stack_node **b, t_count *count);
 
 //*** Medium sort ***
-void		medium_sort(t_stack_node **a, t_stack_node **b, t_count *count);
+void			medium_sort(t_stack_node **a, t_stack_node **b, t_count *count);
 
 //*** Complex sort ***
-void		radix_sort(t_stack_node **a, t_stack_node **b, t_count *count);
+void			radix_sort(t_stack_node **a, t_stack_node **b, t_count *count);
 
 //*** Commands ***
 void			sa(t_stack_node **a, t_count *count);
@@ -117,5 +117,4 @@ void			pb(t_stack_node **b, t_stack_node **a, t_count *count);
 float			compute_disorder(t_stack_node *a);
 void			bench_mode(double disorder_percent, char *flag, t_count *count);
 void			print_count(t_count *count);
-
 #endif

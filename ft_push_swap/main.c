@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:05 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/23 23:03:16 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/02 23:46:45 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	apply_sort_flag(char *arg, t_stack_node **a, t_stack_node **b,
 		radix_sort(a, b, count);
 	else if (ft_strcmp(arg, "--bench") != 0)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	else
@@ -75,28 +75,77 @@ static char	*get_sort_flag(int argc, char **argv)
 	return (NULL);
 }
 
-static void	check_flags(int argc, char **argv, t_args *args)
+static char	*repeat_flag(char **arg)
+{
+	int		i;
+	int		j;
+	int		count;
+	int		k;
+	int		count_strg;
+	char	*flag[] = {"--simple", "--medium", "--complex", "--adaptive"};;
+
+	count = 0;
+	count_strg = 0;
+	i = 0;
+	while (arg[i])
+	{
+		j = i + 1;
+		k = 0;
+		while (k < 4)
+		{
+			if (ft_strcmp(flag[k], arg[i]) == 0)
+			{
+				count_strg++;
+				if (count_strg > 1)
+					return (arg[i]);
+			}
+			k++;
+		}
+		while (arg[j])
+		{
+			if (ft_strcmp(arg[i], arg[j]) == 0)
+				return (arg[i]);
+			if (ft_strcmp(arg[i], "--") == 0)
+			{
+				count++;
+				if (count > 2 || !(arg[i][2]))
+					return (arg[i]);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
+}
+
+static bool	check_flags(int argc, char **argv, t_args *args)
 {
 	int	start;
 
+	if (repeat_flag(argv))
+	{
+		ft_printf("Error\n");
+		return (true);
+	}
 	args->flag = get_sort_flag(argc, argv);
 	args->bench = has_bench_flag(argc, argv);
 	args->values = NULL;
 	args->free_values = false;
 	if (argc < 2)
-		return ;
+		return (true);
 	start = 1;
 	while (start < argc && ft_strncmp(argv[start], "--", 2) == 0)
 		start++;
 	if (start >= argc)
-		return ;
+		return (true);
 	if (start == argc - 1)
 	{
 		args->values = ft_split(argv[start], ' ');
 		args->free_values = true;
-		return ;
+		return (false);
 	}
 	args->values = argv + start;
+	return (false);
 }
 
 static double	run_sort(t_sort_data *data)
@@ -113,7 +162,8 @@ static double	run_sort(t_sort_data *data)
 	else if (stack_len(*data->a) == 3)
 		tiny_sort(data->a, data->count);
 	else
-		apply_sort_flag(data->flag, data->a, data->b, disorder_percent, data->count);
+		apply_sort_flag(data->flag, data->a, data->b,
+			disorder_percent, data->count);
 	return (disorder);
 }
 
@@ -142,17 +192,14 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (1);
-	check_flags(argc, argv, &args);
+	if (check_flags(argc, argv, &args))
+		return (0);
 	a = NULL;
 	b = NULL;
 	count = (t_count){0};
 	stack_init(&a, args.values, args.free_values);
 	data = (t_sort_data){&a, &b, args.flag, &count};
 	disorder = run_sort(&data);
-	if (stack_sorted(a) == true)
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
 	if (args.bench)
 		bench_mode(disorder, args.flag, &count);
 	cleanup(&a, args.values, args.free_values);

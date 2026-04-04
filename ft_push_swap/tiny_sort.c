@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tiny_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:39:31 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/22 07:24:43 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:03:03 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

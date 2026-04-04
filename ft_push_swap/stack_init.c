@@ -6,10 +6,9 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:38:48 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/16 21:27:51 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/02 23:16:51 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_push_swap.h"
 
@@ -45,25 +44,43 @@ void	stack_init(t_stack_node **a, char **argv, bool flag_argc_2)
 {
 	long	nbr;
 	int		i;
+	int		count;
 
 	i = 0;
+	count = 0;
 	while (argv[i])
 	{
-		if (argv[i][0] == '\0')
+		if (ft_strcmp(argv[i], "--simple") == 0
+			|| ft_strcmp(argv[i], "--medium") == 0
+			|| ft_strcmp(argv[i], "--complex") == 0
+			|| ft_strcmp(argv[i], "--adaptive") == 0
+			|| ft_strcmp(argv[i], "--bench") == 0)
 		{
-			++i;
-			continue ;
+			count++;
+			if (count > 2)
+				error_free(a, argv, flag_argc_2);
+			i++;
+			if (argv[i])
+			{
+				if (ft_strcmp(argv[i], "--simple") == 0
+					|| ft_strcmp(argv[i], "--medium") == 0
+					|| ft_strcmp(argv[i], "--complex") == 0
+					|| ft_strcmp(argv[i], "--adaptive") == 0
+					|| ft_strcmp(argv[i], "--bench") == 0)
+				{
+					count++;
+					i++;
+				}
+			}
 		}
+		if (!argv[i])
+			return ;
 		if (error_syntax(argv[i]))
 			error_free(a, argv, flag_argc_2);
 		nbr = ft_atol(argv[i]);
-		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_free(a, argv, flag_argc_2);
-		if (error_repetition(*a, (int)nbr))
+		if ((nbr > INT_MAX || nbr < INT_MIN) || error_repetition(*a, (int)nbr))
 			error_free(a, argv, flag_argc_2);
 		append_node(a, (int)nbr);
-		++i;
+		i++;
 	}
-	if (flag_argc_2)
-		free_matrix(argv);
 }

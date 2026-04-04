@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 08:05:04 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/13 20:42:29 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/26 21:57:56 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
+
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t			i;

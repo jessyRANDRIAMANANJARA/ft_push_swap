@@ -25,5 +25,3 @@ void	example(void)
 	dptr = &ptr;
 	(*dptr)->value = 3;
 }
-
-for i in {1..10}; do ARG=$(shuf -i 0-499 -n 100 | tr '\n' ' '); echo $(./push_swap --medium $ARG | wc -l); done : code pour tester a plusieurs coups

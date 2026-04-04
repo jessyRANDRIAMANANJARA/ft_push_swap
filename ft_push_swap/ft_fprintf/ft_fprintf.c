@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_fprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 08:39:59 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/02 20:39:08 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/02 20:39:21 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_fprintf.h"
 
-static int	check_float(const char *format, int *i, va_list args)
+static int	check_float(int fd, const char *format, int *i, va_list args)
 {
 	char	data_spec;
 	int		precision;
@@ -36,36 +36,28 @@ static int	check_float(const char *format, int *i, va_list args)
 			j--;
 		}
 	}
-	return (ft_putfloat(va_arg(args, double), precision));
+	return (ft_fputfloat(fd, va_arg(args, double), precision));
 }
 
-static int	ft_check_format(const char *format, int *i, va_list args)
+static int	ft_check_format(int fd, const char *format, int *i, va_list args)
 {
 	char	data_spec;
 
 	data_spec = format[*i];
 	if (data_spec == 'f')
-		return (check_float(format, i, args));
+		return (check_float(fd, format, i, args));
 	else if (data_spec == 'c')
-		return (ft_putchar(va_arg(args, int)));
+		return (ft_fputchar(fd, va_arg(args, int)));
 	else if (data_spec == 's')
-		return (ft_putstr(va_arg(args, char *)));
-	else if (data_spec == 'u')
-		return (ft_putunbr(va_arg(args, unsigned int)));
+		return (ft_fputstr(fd, va_arg(args, char *)));
 	else if (data_spec == 'i' || data_spec == 'd')
-		return (ft_putnbr(va_arg(args, int)));
-	else if (data_spec == 'X')
-		return (ft_hexa_maj(va_arg(args, unsigned int)));
-	else if (data_spec == 'x')
-		return (ft_hexa_min(va_arg(args, unsigned int)));
-	else if (data_spec == 'p')
-		return (ft_hexa_pointer(va_arg(args, int *)));
+		return (ft_fputnbr(fd, va_arg(args, int)));
 	else if (data_spec == '%')
-		return (ft_putchar('%'));
+		return (ft_fputchar(fd, '%'));
 	return (-1);
 }
 
-static int	ft_handle_char(const char *format, int *i, va_list args)
+static int	ft_handle_char(int fd, const char *format, int *i, va_list args)
 {
 	int	ret;
 
@@ -80,15 +72,15 @@ static int	ft_handle_char(const char *format, int *i, va_list args)
 			while (format[*i] >= '0' && format[*i] <= '9')
 				(*i)++;
 		}
-		return (ft_check_format(format, i, args));
+		return (ft_check_format(fd, format, i, args));
 	}
-	ret = write(1, &format[*i], 1);
+	ret = write(fd, &format[*i], 1);
 	if (ret == -1)
 		return (-1);
 	return (1);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_fprintf(int fd, const char *format, ...)
 {
 	va_list	args;
 	int		i;
@@ -102,7 +94,7 @@ int	ft_printf(const char *format, ...)
 	len = 0;
 	while (format[i])
 	{
-		result = ft_handle_char(format, &i, args);
+		result = ft_handle_char(fd, format, &i, args);
 		if (result == -1)
 			return (-1);
 		len += result;

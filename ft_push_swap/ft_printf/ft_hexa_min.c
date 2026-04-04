@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hexa_min.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 22:52:07 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/12 11:11:29 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:02:40 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

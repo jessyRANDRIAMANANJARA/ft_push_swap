@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 15:03:35 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/22 15:03:35 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:02:08 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_push_swap.h"
 
@@ -23,9 +22,9 @@ static int	total_operations(t_count *count)
 
 void	print_count(t_count *count)
 {
-    ft_printf("[bench] total_ops: %d\n", total_operations(count));
-    ft_printf("[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n", count->sa,
+	ft_fprintf(2, "[bench] total_ops: %d\n", total_operations(count));
+	ft_fprintf(2, "[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n", count->sa,
 		count->sb, count->ss, count->pa, count->pb);
-    ft_printf("[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
+	ft_fprintf(2, "[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
 		count->ra, count->rb, count->rr, count->rra, count->rrb, count->rrr);
 }

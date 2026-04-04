@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:38:31 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/22 06:28:45 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:02:14 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	rotate(t_stack_node **stack)
 	(*stack)->prev = NULL;
 	last_node->next->prev = last_node;
 	last_node->next->next = NULL;
-}	
+}
 
 void	ra(t_stack_node **a, t_count *count)
 {

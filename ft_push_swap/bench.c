@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bench.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 23:35:56 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/23 22:44:21 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/01 20:27:49 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@ void	bench_mode(double disorder_percent, char *flag, t_count *count)
 
 	disorder_percent = disorder_percent * 100;
 	name = clean_flag_name(flag);
-	ft_printf("[bench] disorder: %.2f%%\n", disorder_percent);
-	ft_printf("[bench] strategy: %s", name);
+	ft_fprintf(2, "[bench] disorder: %.2f%%\n", disorder_percent);
+	ft_fprintf(2, "[bench] strategy: %s", name);
 	if (ft_strcmp(name, "simple") == 0)
-		ft_printf(" / O(n^2)\n");
+		ft_fprintf(2, " / O(n^2)\n");
 	else if (ft_strcmp(name, "medium") == 0)
-		ft_printf(" / O(nVn)\n");
+		ft_fprintf(2, " / O(n√n)\n");
 	else if (ft_strcmp(name, "complex") == 0)
-		ft_printf(" / O(nlogn)\n");
+		ft_fprintf(2, " / O(n log n)\n");
 	else if (ft_strcmp(name, "adaptive") == 0)
 	{
 		if (disorder_percent < 20.0)
-			ft_printf(" / O(n^2)\n");
+			ft_fprintf(2, " / O(n^2)\n");
 		else if (disorder_percent < 50.0)
-			ft_printf(" / O(nVn)\n");
+			ft_fprintf(2, " / O(n√n)\n");
 		else
-			ft_printf(" / O(nlogn)\n");
+			ft_fprintf(2, " / O(n log n)\n");
 	}
 	print_count(count);
 }

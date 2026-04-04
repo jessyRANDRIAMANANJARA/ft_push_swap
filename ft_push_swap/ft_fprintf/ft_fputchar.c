@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_fputchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 18:36:45 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/30 22:02:43 by tusandri         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:02:26 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_fprintf.h"
 
-int	ft_putchar(char c)
+int	ft_fputchar(int fd, char c)
 {
-	return (write(1, &c, 1));
+	return (write(fd, &c, 1));
 }

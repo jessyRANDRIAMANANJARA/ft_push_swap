@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_count_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 08:27:28 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/02/09 11:57:29 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:02:38 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
