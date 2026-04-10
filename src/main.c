@@ -286,28 +286,28 @@ void rra(t_stack *a)
 
 static void sort_three(t_stack *a)
 {
-    int x;
-    int y;
-    int z;
+    int first;
+    int second;
+    int third;
 
-    x = a->data[0];
-    y = a->data[1];
-    z = a->data[2];
-    if (x > y && y < z && x < z)
+    first = a->data[0];
+    second = a->data[1];
+    third = a->data[2];
+    if (first > second && second < third && first < third)
         sa(a);
-    else if (x > y && y > z)
+    else if (first > second && second > third)
     {
         sa(a);
         rra(a);
     }
-    else if (x > y && y < z && x > z)
+    else if (first > second && second < third && first > third)
         ra(a);
-    else if (x < y && y > z && x < z)
+    else if (first < second && second > third && first < third)
     {
         sa(a);
         ra(a);
     }
-    else if (x < y && y > z && x > z)
+    else if (first < second && second > third && first > third)
         rra(a);
 }
 
