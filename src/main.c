@@ -41,6 +41,7 @@ static int parse_token(const char *token, size_t len, int *value)
     size_t i;
     int sign;
     long result;
+    long digit;
 
     i = 0;
     sign = 1;
@@ -59,9 +60,11 @@ static int parse_token(const char *token, size_t len, int *value)
     {
         if (token[i] < '0' || token[i] > '9')
             return (0);
-        result = result * 10 + (token[i] - '0');
-        if ((sign == 1 && result > INT_MAX) || (sign == -1 && -result < INT_MIN))
+        digit = token[i] - '0';
+        if ((sign == 1 && result > (INT_MAX - digit) / 10)
+            || (sign == -1 && result > ((-(long)INT_MIN) - digit) / 10))
             return (0);
+        result = result * 10 + digit;
         i++;
     }
     *value = (int)(result * sign);
