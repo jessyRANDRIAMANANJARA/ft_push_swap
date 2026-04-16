@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
+/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 15:03:35 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/30 22:02:08 by tusandri         ###   ########.fr       */
+/*   Updated: 2026/04/14 00:20:01 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

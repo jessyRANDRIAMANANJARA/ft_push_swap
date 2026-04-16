@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 23:10:16 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/11 00:50:15 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/16 01:41:49 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	get_max_bits(t_stack_node *a)
 	return (bits);
 }
 
-static void	sort_by_bit_optimized(t_stack_node **a, t_stack_node **b,
+static void	sort_by_bit(t_stack_node **a, t_stack_node **b,
 								t_count *count, int bit)
 {
 	int	len;
@@ -121,7 +121,7 @@ void	radix_sort(t_stack_node **a, t_stack_node **b, t_count *count)
 	bit = skip;
 	while (bit < max_bits)
 	{
-		sort_by_bit_optimized(a, b, count, bit);
+		sort_by_bit(a, b, count, bit);
 		bit++;
 	}
 }

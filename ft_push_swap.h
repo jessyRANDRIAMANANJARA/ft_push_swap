@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:37:45 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/11 00:54:42 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/16 02:31:12 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include <unistd.h>
 # include <stddef.h>
 # include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
 # include "./ft_fprintf/ft_fprintf.h"
 
+//*** principal structure ***
 typedef struct s_stack_node
 {
 	int					value;
@@ -35,6 +35,7 @@ typedef struct s_stack_node
 	struct s_stack_node	*prev;
 }				t_stack_node;	
 
+//*** handle count ***
 typedef struct s_count
 {
 	int	sa;
@@ -51,6 +52,7 @@ typedef struct s_count
 	int	disorder_percent;
 }	t_count;
 
+//*** handle flags ***
 typedef struct s_args
 {
 	char	*flag;
@@ -59,6 +61,7 @@ typedef struct s_args
 	bool	bench;
 }	t_args;
 
+//*** handle sort stack data */
 typedef struct s_sort_data
 {
 	t_stack_node	**a;
@@ -66,12 +69,6 @@ typedef struct s_sort_data
 	char			*flag;
 	t_count			*count;
 }	t_sort_data;
-
-typedef struct s_sort_params
-{
-	int		disorder;
-	t_count	*count;
-}	t_sort_params;
 
 //*** Handle errors-free ***
 void			free_matrix(char **argv);
@@ -131,12 +128,10 @@ void			push_buckets(t_stack_node **a, t_stack_node **b, int bkt,
 					t_count *count);
 void			move_back_fast(t_stack_node **a, t_stack_node **b,
 					t_count *count);
-// void			slow_bring_to_top(t_stack_node **stack, t_stack_node *node,
-					// char name, t_count *count);
 void			move_back_very_slow(t_stack_node **a, t_stack_node **b,
 					t_count *count);
 
-//*** simpl sort utils ***
+//*** simple sort utils ***
 int				cost_to_top(t_stack_node *stack, t_stack_node *node);
 int				calculate_total_cost(t_stack_node *a, t_stack_node *b,
 					t_stack_node *node);
@@ -176,6 +171,11 @@ void			pb(t_stack_node **b, t_stack_node **a, t_count *count);
 
 //*** bench utils ***
 float			compute_disorder(t_stack_node *a);
-void			bench_mode(double disorder_percent, char *flag, t_count *count);
+void			bench_mode(t_stack_node **a, double disorder_percent,
+					char *flag, t_count *count);
 void			print_count(t_count *count);
+
+//*** Flags utils ***
+char			**extract_values(char **split_args, char **flag, bool *bench);
+
 #endif

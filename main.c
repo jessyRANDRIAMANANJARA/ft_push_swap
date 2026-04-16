@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:05 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/11 00:30:27 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/16 02:19:23 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 	data = (t_sort_data){&tab[0], &tab[1], args.flag, &count};
 	disorder = run_sort(&data);
 	if (args.bench)
-		bench_mode(disorder, args.flag, &count);
+		bench_mode(&tab[0], disorder, args.flag, &count);
 	cleanup(&tab[0], args.values, args.free_values);
 	return (0);
 }

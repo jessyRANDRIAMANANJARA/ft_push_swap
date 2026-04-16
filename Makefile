@@ -7,36 +7,31 @@ SRCS = main.c error_free.c push_command.c simple_sort.c \
 		stack_init.c stack_utils.c swap_command.c tiny_sort.c disorder.c \
 		medium_sort.c complex_sort.c bench.c operation.c rotate_utils.c \
 		gest_flag.c medium_sort_array.c medium_target.c simple_find_cost.c \
-		medium_move.c simple_move.c
+		medium_move.c simple_move.c split_extract_values.c gest_flag_2.c
 OBJS = $(SRCS:.c=.o)
 
 HEADERS = push_swap.h
 
-LIBFTPRINTF = ft_printf/libftprintf.a
 LIBFTFPRINTF = ft_fprintf/libftfprintf.a
 LIBFT = libft/libft.a
 
 all : $(NAME)
 
-$(LIBFTPRINTF):
-	make -C ft_printf
 $(LIBFTFPRINTF):
 	make -C ft_fprintf
 $(LIBFT):
 	make -C libft
 
-$(NAME) : $(OBJS) $(LIBFTPRINTF) $(LIBFTFPRINTF) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) -L./ft_printf -lftprintf -L./ft_fprintf -lftfprintf -L./libft -lft -o $(NAME)
+$(NAME) : $(OBJS) $(LIBFTFPRINTF) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) -L./ft_fprintf -lftfprintf -L./libft -lft -o $(NAME)
 
 clean :
 	rm -f $(OBJS)
-	rm -f $(LIBFTPRINTF)
 	rm -f $(LIBFTFPRINTF)
 	rm -f $(LIBFT)
 
 
 fclean : clean
-	make -C ft_printf fclean
 	make -C ft_fprintf fclean
 	make -C libft fclean
 	rm -f $(NAME)

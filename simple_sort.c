@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:31 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/11 01:02:14 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/14 00:21:57 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	push_swap(t_stack_node **a, t_stack_node **b, t_count *count)
 	if (original_len <= 100)
 		percent = 2;
 	else
-		percent = 3;
+		percent = 15;
 	while (len-- > 3)
 		pb(b, a, count);
 	tiny_sort(a, count);

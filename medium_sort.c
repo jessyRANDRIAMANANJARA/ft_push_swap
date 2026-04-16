@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:00:53 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/11 00:38:33 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/14 00:23:23 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	get_bucket_size(int len)
 	else if (len <= 100)
 		size = (len / 20) - 2;
 	else if (len <= 500)
-		size = (len / 20) + 1;
+		size = (len / 23) + 1;
 	else
 		size = (len / 25) + 1;
 	if (size <= 0)
