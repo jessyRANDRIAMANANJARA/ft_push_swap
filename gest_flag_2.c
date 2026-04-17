@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 01:03:53 by tusandri          #+#    #+#             */
-/*   Updated: 2026/04/16 02:43:33 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/17 04:11:00 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	find_first_non_flag(int argc, char **argv)
 	k = 1;
 	while (k < argc)
 	{
-		if (ft_strncmp(argv[k], "--", 2) != 0)
+		if (!is_flag_argument(argv[k]))
 		{
 			if (start == -1)
 				start = k;
@@ -57,11 +57,13 @@ static bool	handle_single_arg(char *arg, t_args *args, char **flag)
 		return (true);
 	args->values = extract_values(split_args, flag, &args->bench);
 	if (!args->values)
-		return (ft_fprintf(2, "Error\n"), free(split_args), true);
-	if (*flag && !args->flag)
+		return (ft_fprintf(2, "Error\n"), free_matrix(split_args), true);
+	if (*flag)
 	{
+		if (args->flag)
+			return (ft_fprintf(2, "Error\n"), free_matrix(split_args), true);
 		if (!is_valid_sort_flag(*flag))
-			return (ft_fprintf(2, "Error\n"), free(split_args), true);
+			return (ft_fprintf(2, "Error\n"), free_matrix(split_args), true);
 		args->flag = *flag;
 	}
 	args->free_values = true;
@@ -78,7 +80,7 @@ static int	count_non_flag_args(int argc, char **argv)
 	count = 0;
 	while (k < argc)
 	{
-		if (ft_strncmp(argv[k], "--", 2) != 0)
+		if (!is_flag_argument(argv[k]))
 			count++;
 		k++;
 	}
@@ -93,11 +95,8 @@ bool	check_flags(int argc, char **argv, t_args *args)
 
 	if (argc < 2)
 		return (ft_fprintf(2, "Error\n"), true);
-	args->flag = NULL;
-	args->bench = false;
-	args->values = NULL;
-	args->free_values = false;
 	flag = NULL;
+	*args = (t_args){NULL, NULL, false, false};
 	if (argc == 2)
 		return (handle_single_arg(argv[1], args, &flag));
 	if (repeat_flag(argv))

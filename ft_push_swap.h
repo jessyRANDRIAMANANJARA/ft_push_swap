@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:37:45 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/16 02:31:12 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/17 00:09:48 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,5 +177,6 @@ void			print_count(t_count *count);
 
 //*** Flags utils ***
 char			**extract_values(char **split_args, char **flag, bool *bench);
+bool			is_flag_argument(char *arg);
 
 #endif

@@ -79,7 +79,7 @@ char	**extract_values(char **split_args, char **flag, bool *bench)
 	int	count;
 
 	count = count_and_validate_flags(split_args, flag);
-	if (count < 0)
+	if (count <= 0)
 		return (NULL);
 	if (has_bench_flag_in_array(split_args))
 		*bench = true;

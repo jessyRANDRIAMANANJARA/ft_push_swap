@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:23:01 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/16 02:32:42 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/17 00:15:27 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,15 @@ char	*repeat_flag(char **arg)
 				return (arg[i]);
 	}
 	return (NULL);
+}
+
+bool	is_flag_argument(char *arg)
+{
+	if (!arg)
+		return (false);
+	if (ft_strncmp(arg, "--", 2) != 0)
+		return (false);
+	if (ft_strchr(arg, ' '))
+		return (false);
+	return (true);
 }
