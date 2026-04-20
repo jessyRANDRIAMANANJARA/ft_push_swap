@@ -7,8 +7,7 @@ SRCS = main.c error_free.c push_command.c simple_sort.c \
 		stack_init.c stack_utils.c swap_command.c tiny_sort.c disorder.c \
 		medium_sort.c complex_sort.c bench.c operation.c rotate_utils.c \
 		gest_flag.c medium_sort_array.c medium_target.c simple_find_cost.c \
-		medium_move.c simple_move.c split_extract_values.c gest_flag_two.c \
-		gest_flag_three.c
+		medium_move.c simple_move.c split_extract_values.c gest_flag_two.c
 OBJS = $(SRCS:.c=.o)
 
 HEADERS = push_swap.h
