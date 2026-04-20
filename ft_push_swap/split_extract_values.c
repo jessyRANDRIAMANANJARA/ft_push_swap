@@ -6,26 +6,11 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 00:30:07 by tusandri          #+#    #+#             */
-/*   Updated: 2026/04/20 19:09:59 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/20 19:18:47 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
-
-static bool	is_valid_flag(char *flag)
-{
-	if (ft_strcmp(flag, "--bench") == 0)
-		return (true);
-	if (ft_strcmp(flag, "--simple") == 0)
-		return (true);
-	if (ft_strcmp(flag, "--medium") == 0)
-		return (true);
-	if (ft_strcmp(flag, "--complex") == 0)
-		return (true);
-	if (ft_strcmp(flag, "--adaptive") == 0)
-		return (true);
-	return (false);
-}
 
 static int	handle_flag_assignment(char *arg, char **flag)
 {

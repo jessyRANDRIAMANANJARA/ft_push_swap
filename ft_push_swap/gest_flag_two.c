@@ -6,15 +6,17 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 01:03:53 by tusandri          #+#    #+#             */
-/*   Updated: 2026/04/20 19:08:48 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/20 19:19:02 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-static bool	is_valid_sort_flag(char *flag)
+bool	is_valid_flag(char *flag)
 {
 	if (!flag)
+		return (true);
+	if (ft_strcmp(flag, "--bench") == 0)
 		return (true);
 	if (ft_strcmp(flag, "--simple") == 0)
 		return (true);
@@ -31,7 +33,7 @@ static bool	validate_and_assign_flag(t_args *args, char **flag)
 {
 	if (!*flag)
 		return (false);
-	if (args->flag || !is_valid_sort_flag(*flag))
+	if (args->flag || !is_valid_flag(*flag))
 	{
 		free(*flag);
 		*flag = NULL;

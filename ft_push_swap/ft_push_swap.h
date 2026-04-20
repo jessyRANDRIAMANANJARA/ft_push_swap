@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
+/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:37:45 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/18 15:44:38 by tusandri         ###   ########.fr       */
+/*   Updated: 2026/04/20 19:14:45 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,5 +179,6 @@ void			print_count(t_count *count);
 //*** Flags utils ***
 char			**extract_values(char **split_args, char **flag, bool *bench);
 bool			is_flag_argument(char *arg);
+bool			is_valid_flag(char *flag);
 
 #endif
