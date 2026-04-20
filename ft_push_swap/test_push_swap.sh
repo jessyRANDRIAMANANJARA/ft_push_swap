@@ -202,7 +202,7 @@ echo ""
 sep "1. Arguments invalides → doit afficher Error"
 # ============================================================
 
-expect_error "Aucun argument"
+expect_ok "Aucun argument"
 expect_error "Lettre seule"                   "a"
 expect_error "Lettres mélangées"              "abc" "def"
 expect_error "Nombre avec lettres"            "1a"

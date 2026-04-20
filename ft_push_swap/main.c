@@ -6,7 +6,7 @@
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:05 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/20 20:26:51 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/20 20:42:12 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,13 @@ int	main(int argc, char **argv)
 	t_sort_data		data;
 	double			disorder;
 
-	if (argc < 2 || check_void_str(argc, argv) == 1)
+	if (argc < 2)
+		return (0);
+	if (check_void_str(argc, argv) == 1)
 	{
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	check_void_str(argc, argv);
 	if (check_flags(argc, argv, &args))
 		return (1);
 	tab[0] = NULL;
