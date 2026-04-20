@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:05 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/16 02:19:23 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/18 15:46:08 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,19 @@ static double	run_sort(t_sort_data *data)
 	return (disorder);
 }
 
-static void	cleanup(t_stack_node **a, char **values, bool free_values)
+static void	cleanup(t_stack_node **a, t_args *args)
 {
 	int	i;
 
 	free_stack(a);
-	if (free_values && values)
+	if (args->free_flag && args->flag)
+		free(args->flag);
+	if (args->free_values && args->values)
 	{
 		i = 0;
-		while (values[i])
-			free(values[i++]);
-		free(values);
+		while (args->values[i])
+			free(args->values[i++]);
+		free(args->values);
 	}
 }
 
@@ -77,6 +79,6 @@ int	main(int argc, char **argv)
 	disorder = run_sort(&data);
 	if (args.bench)
 		bench_mode(&tab[0], disorder, args.flag, &count);
-	cleanup(&tab[0], args.values, args.free_values);
+	cleanup(&tab[0], &args);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gest_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
+/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:23:01 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/17 00:15:27 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/18 15:22:48 by tusandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,6 @@ char	*repeat_flag(char **arg)
 		j = -1;
 		while (++j < 4)
 			if (ft_strcmp(f[j], arg[i]) == 0 && ++flags > 1)
-				return (arg[i]);
-		j = i;
-		while (arg[++j])
-			if (ft_strcmp(arg[i], arg[j]) == 0)
 				return (arg[i]);
 	}
 	return (NULL);

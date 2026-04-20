@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gest_flag_2.c                                      :+:      :+:    :+:   */
+/*   gest_flag_two.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 01:03:53 by tusandri          #+#    #+#             */
-/*   Updated: 2026/04/17 04:11:00 by hrandri2         ###   ########.fr       */
+/*   Updated: 2026/04/20 19:08:48 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,20 @@ static bool	is_valid_sort_flag(char *flag)
 	return (false);
 }
 
-static int	find_first_non_flag(int argc, char **argv)
+static bool	validate_and_assign_flag(t_args *args, char **flag)
 {
-	int	k;
-	int	start;
-
-	start = -1;
-	k = 1;
-	while (k < argc)
+	if (!*flag)
+		return (false);
+	if (args->flag || !is_valid_sort_flag(*flag))
 	{
-		if (!is_flag_argument(argv[k]))
-		{
-			if (start == -1)
-				start = k;
-		}
-		k++;
+		free(*flag);
+		*flag = NULL;
+		ft_fprintf(2, "Error\n");
+		return (true);
 	}
-	return (start);
+	args->flag = *flag;
+	args->free_flag = true;
+	return (false);
 }
 
 static bool	handle_single_arg(char *arg, t_args *args, char **flag)
@@ -57,61 +54,63 @@ static bool	handle_single_arg(char *arg, t_args *args, char **flag)
 		return (true);
 	args->values = extract_values(split_args, flag, &args->bench);
 	if (!args->values)
-		return (ft_fprintf(2, "Error\n"), free_matrix(split_args), true);
-	if (*flag)
 	{
-		if (args->flag)
-			return (ft_fprintf(2, "Error\n"), free_matrix(split_args), true);
-		if (!is_valid_sort_flag(*flag))
-			return (ft_fprintf(2, "Error\n"), free_matrix(split_args), true);
-		args->flag = *flag;
+		free(*flag);
+		*flag = NULL;
+		ft_fprintf(2, "Error\n");
+		return (free_matrix(split_args), true);
 	}
+	if (validate_and_assign_flag(args, flag))
+		return (free_matrix(split_args), true);
 	args->free_values = true;
-	free(split_args);
-	return (false);
+	return (free_matrix(split_args), false);
 }
 
-static int	count_non_flag_args(int argc, char **argv)
+static char	*build_combined_arg(int argc, char **argv)
 {
-	int	k;
-	int	count;
+	char	*combined_arg;
+	char	*temp;
+	int		i;
 
-	k = 1;
-	count = 0;
-	while (k < argc)
+	combined_arg = ft_strdup(argv[1]);
+	if (!combined_arg)
+		return (NULL);
+	i = 2;
+	while (i < argc)
 	{
-		if (!is_flag_argument(argv[k]))
-			count++;
-		k++;
+		temp = ft_strjoin(combined_arg, " ");
+		if (!temp)
+			return (free(combined_arg), NULL);
+		free(combined_arg);
+		combined_arg = ft_strjoin(temp, argv[i]);
+		free(temp);
+		if (!combined_arg)
+			return (NULL);
+		i++;
 	}
-	return (count);
+	return (combined_arg);
 }
 
 bool	check_flags(int argc, char **argv, t_args *args)
 {
-	int		non_flag_count;
-	int		start;
+	char	*combined_arg;
 	char	*flag;
 
 	if (argc < 2)
 		return (ft_fprintf(2, "Error\n"), true);
 	flag = NULL;
-	*args = (t_args){NULL, NULL, false, false};
+	*args = (t_args){NULL, NULL, false, false, false};
 	if (argc == 2)
 		return (handle_single_arg(argv[1], args, &flag));
-	if (repeat_flag(argv))
-		return (ft_fprintf(2, "Error\n"), true);
-	args->flag = get_sort_flag(argc, argv);
-	if (!is_valid_sort_flag(args->flag))
-		return (ft_fprintf(2, "Error\n"), true);
-	args->bench = has_bench_flag(argc, argv);
-	non_flag_count = count_non_flag_args(argc, argv);
-	if (non_flag_count == 0)
-		return (ft_fprintf(2, "Error\n"), true);
-	start = find_first_non_flag(argc, argv);
-	if (non_flag_count == 1)
-		return (handle_single_arg(argv[start], args, &flag));
-	args->values = argv + start;
-	args->free_values = false;
+	combined_arg = build_combined_arg(argc, argv);
+	if (!combined_arg)
+		return (true);
+	if (handle_single_arg(combined_arg, args, &flag))
+	{
+		free(combined_arg);
+		free(flag);
+		return (true);
+	}
+	free(combined_arg);
 	return (false);
 }
