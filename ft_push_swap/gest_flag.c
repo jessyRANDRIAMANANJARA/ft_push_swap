@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gest_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
+/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:23:01 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/18 15:22:48 by tusandri         ###   ########.fr       */
+/*   Updated: 2026/04/20 19:51:16 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

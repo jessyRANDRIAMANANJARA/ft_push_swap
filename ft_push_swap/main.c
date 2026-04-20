@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
+/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:36:05 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/04/18 15:46:08 by tusandri         ###   ########.fr       */
+/*   Updated: 2026/04/20 20:26:51 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,25 @@ static void	cleanup(t_stack_node **a, t_args *args)
 	}
 }
 
+static int	check_void_str(int argc, char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < argc)
+	{
+		j = 0;
+		while (argv[i][j] && (argv[i][j] == ' '
+			|| argv[i][j] == '\t'))
+			j++;
+		if ((argv[i][0] == '\0') || (argv[i][j] == '\0'))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack_node	*tab[2];
@@ -67,10 +86,14 @@ int	main(int argc, char **argv)
 	t_sort_data		data;
 	double			disorder;
 
-	if (argc < 2)
+	if (argc < 2 || check_void_str(argc, argv) == 1)
+	{
+		write(2, "Error\n", 6);
 		return (1);
+	}
+	check_void_str(argc, argv);
 	if (check_flags(argc, argv, &args))
-		return (0);
+		return (1);
 	tab[0] = NULL;
 	tab[1] = NULL;
 	count = (t_count){0};

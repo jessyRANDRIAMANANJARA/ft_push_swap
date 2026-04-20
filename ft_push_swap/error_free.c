@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tusandri <tusandri@student.42antananari    +#+  +:+       +#+        */
+/*   By: hrandri2 <hrandri2@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:35:57 by hrandri2          #+#    #+#             */
-/*   Updated: 2026/03/30 22:02:53 by tusandri         ###   ########.fr       */
+/*   Updated: 2026/04/20 19:51:51 by hrandri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
